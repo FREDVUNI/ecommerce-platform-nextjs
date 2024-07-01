@@ -36,8 +36,8 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/ecommerce-website.git
-   cd ecommerce-website
+   git clone https://github.com/FREDVUNI/fullstack-ecommerce-platform.git
+   cd fullstack-ecommerce-platform
    ```
 
 2. **Install dependencies:**
@@ -116,4 +116,4 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Acknowledgements
 
-- Special thanks to  [Code With Phuc](https://www.youtube.com/watch?v=SR4dFgdKUyI&t=661s) and contributors of the libraries and services used in this project.
+- Special thanks to [Code With Phuc](https://www.youtube.com/watch?v=SR4dFgdKUyI&t=661s) and contributors of the libraries and services used in this project.
