@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import TopBar from "../components/layout/TopBar";
+import LeftSideBar from "../components/layout/LeftSideBar";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,7 +23,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={poppins.className}>{children}</body>
+        <body className={poppins.className}>
+          <div className="flex max-lg:flex-col">
+            <LeftSideBar />
+            <TopBar />
+            <div className="flex-1">{children}</div>
+          </div>
+        </body>
       </html>
     </ClerkProvider>
   );
