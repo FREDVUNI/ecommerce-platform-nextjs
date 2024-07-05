@@ -1,3 +1,14 @@
+import { SignedIn, SignedOut, RedirectToSignIn } from "@clerk/nextjs";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <SignedIn>
+        <div>Home</div>
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
+  );
 }
