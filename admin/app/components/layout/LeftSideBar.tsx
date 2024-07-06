@@ -16,11 +16,6 @@ const LeftSideBar = () => {
         {navLinks &&
           navLinks.map((link, index) => (
             <Link
-
-
-
-
-            
               href={link.url}
               key={index}
               className={`flex text-body-medium gap-4 ${
