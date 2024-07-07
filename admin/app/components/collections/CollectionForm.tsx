@@ -31,7 +31,10 @@ const CollectionForm = () => {
     },
   });
 
-  const { handleSubmit, formState: { errors } } = methods;
+  const {
+    handleSubmit,
+    formState: { errors },
+  } = methods;
 
   const onSubmit = (data: any) => {
     console.log(data);
