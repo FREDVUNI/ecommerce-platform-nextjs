@@ -14,11 +14,26 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import ImageUpload from "../custom ui/ImageUpload";
+
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 const formSchema = z.object({
   title: z.string().min(2).max(20).nonempty(),
   description: z.string().min(2).max(200).nonempty(),
-  image: z.string().url().optional(),
+  image: z
+    .any()
+    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported."
+    ),
 });
 
 const CollectionForm = () => {
@@ -42,7 +57,7 @@ const CollectionForm = () => {
 
   return (
     <div className="p-10 bg-white shadow-sm">
-      <h2 className="text-2xl font-medium mb-4 text-gray-800">
+      <h2 className="text-2xl font-medium mb-4 text-gray-500">
         Create Collection
       </h2>
       <FormProvider {...methods}>
@@ -51,15 +66,19 @@ const CollectionForm = () => {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel className="text-gray-500">Title</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter the title"
+                    placeholder="Enter the item title"
                     {...field}
-                    className="border border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="border border-gray-300 shadow-sm rounded-none focus:outline-none"
                   />
                 </FormControl>
-                <FormMessage>
+                <FormMessage
+                  className={`text-red-500 text-sm mb-2 ${
+                    errors.image ? "" : "hidden"
+                  }`}
+                >
                   {errors.title && errors.title.message}
                 </FormMessage>
               </FormItem>
@@ -69,16 +88,20 @@ const CollectionForm = () => {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+                <FormLabel className="text-gray-500">Description</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Description"
+                    placeholder="Enter item description"
                     {...field}
                     rows={5}
-                    className="border border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                    className="border border-gray-300 shadow-sm rounded-none focus:outline-none"
                   />
                 </FormControl>
-                <FormMessage>
+                <FormMessage
+                  className={`text-red-500 text-sm mb-2 ${
+                    errors.image ? "" : "hidden"
+                  }`}
+                >
                   {errors.description && errors.description.message}
                 </FormMessage>
               </FormItem>
@@ -88,15 +111,18 @@ const CollectionForm = () => {
             name="image"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Image URL</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="Enter the image URL"
-                    {...field}
-                    className="border border-gray-300 shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                  <ImageUpload
+                    value={field.value ? field.value : []}
+                    onChange={(url) => field.onChange(url)}
+                    onRemove={() => field.onChange("")}
                   />
                 </FormControl>
-                <FormMessage>
+                <FormMessage
+                  className={`text-red-500 text-sm mb-2 ${
+                    errors.image ? "" : "hidden"
+                  }`}
+                >
                   {errors.image && errors.image.message}
                 </FormMessage>
               </FormItem>
@@ -105,7 +131,7 @@ const CollectionForm = () => {
           <div className="flex gap-10">
             <Button
               type="submit"
-              className="bg-indigo-500 text-white py-2 px-4 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600"
+              className="bg-[#045EBC] text-white py-2 px-12 rounded-none focus:outline-none focus:bg-[#045EBC]"
             >
               Create
             </Button>
