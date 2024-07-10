@@ -21,23 +21,24 @@ const LeftSideBar = () => {
 
       {/* Navigation Links */}
       <nav className="flex-1 overflow-y-auto py-4">
-        {navLinks.map((link, index) => (
-          <Link
-            href={link.url}
-            key={index}
-            className={cn(
-              "flex items-center gap-4 px-4 py-2 my-1 rounded transition-all duration-200",
-              {
-                "bg-gray-200 text-black": pathName === link.url,
-                "text-gray-600 hover:bg-gray-100 hover:text-black":
-                  pathName !== link.url,
-              }
-            )}
-          >
-            {link.icon}
-            <span className="font-medium">{link.label}</span>
-          </Link>
-        ))}
+        {navLinks &&
+          navLinks.map((link, index) => (
+            <Link
+              href={link.url}
+              key={index}
+              className={cn(
+                "flex items-center gap-4 px-4 py-2 my-1 rounded transition-all duration-200",
+                {
+                  "bg-gray-200 text-black": pathName === link.url,
+                  "text-gray-600 hover:bg-gray-100 hover:text-black":
+                    pathName !== link.url,
+                }
+              )}
+            >
+              {link.icon}
+              <span className="font-medium">{link.label}</span>
+            </Link>
+          ))}
       </nav>
 
       {/* Profile Section */}
