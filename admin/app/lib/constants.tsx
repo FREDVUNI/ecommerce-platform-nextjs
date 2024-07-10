@@ -4,6 +4,7 @@ import {
   ShoppingBag,
   Tag,
   UsersRound,
+  Images,
 } from "lucide-react";
 
 export const navLinks = [
@@ -16,6 +17,11 @@ export const navLinks = [
     url: "/collections",
     icon: <Shapes />,
     label: "Collections",
+  },
+  {
+    url: "/slider",
+    icon: <Images />,
+    label: "Slider",
   },
   {
     url: "/products",
