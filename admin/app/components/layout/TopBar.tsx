@@ -1,4 +1,5 @@
 "use client";
+
 import { navLinks } from "@/app/lib/constants";
 import { UserButton } from "@clerk/nextjs";
 import { Menu } from "lucide-react";
