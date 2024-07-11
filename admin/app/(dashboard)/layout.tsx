@@ -12,7 +12,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: "Borcella Admin Dashboard",
-  description: "Manage Borcella's store",
+  description: "Manage Borcelle's store",
 };
 
 export default function RootLayout({
