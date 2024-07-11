@@ -9,8 +9,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Borcella Dashboard",
-  description: "Manage Borcella's store",
+  title: "Borcelle Dashboard",
+  description: "Manage Borcelle's store",
 };
 
 export default function RootLayout({
