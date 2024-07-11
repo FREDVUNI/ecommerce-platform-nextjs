@@ -11,7 +11,7 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Borcella Admin Dashboard",
+  title: "Borcelle Admin Dashboard",
   description: "Manage Borcelle's store",
 };
 
