@@ -108,12 +108,12 @@ const CollectionForm = () => {
               </FormItem>
             )}
           />
-          <div className="flex gap-10">
+          <div className="flex gap-8">
             <Button
               type="submit"
-              className="bg-[#045EBC] text-white py-2 px-12 rounded-none focus:outline-none focus:bg-[#045EBC]"
+              className="bg-[#045EBC] text-white py-2 px-5 focus:outline-none focus:bg-[#045EBC]"
             >
-              Create
+              Create collection
             </Button>
           </div>
         </form>
