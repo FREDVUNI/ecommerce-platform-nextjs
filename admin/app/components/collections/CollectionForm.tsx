@@ -16,24 +16,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
 
-const MAX_FILE_SIZE = 5000000;
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
-
 const formSchema = z.object({
   title: z.string().min(2).max(20).nonempty(),
   description: z.string().min(2).max(200).nonempty(),
-  image: z
-    .any()
-    .refine((file) => file?.size <= MAX_FILE_SIZE, `Max image size is 5MB.`)
-    .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      "Only .jpg, .jpeg, .png and .webp formats are supported."
-    ),
+  images: z.array(z.string().url()).optional(),
 });
 
 const CollectionForm = () => {
@@ -42,7 +28,7 @@ const CollectionForm = () => {
     defaultValues: {
       title: "",
       description: "",
-      image: "",
+      images: [],
     },
   });
 
@@ -74,11 +60,7 @@ const CollectionForm = () => {
                     className="border border-gray-300 shadow-sm rounded-none focus:outline-none"
                   />
                 </FormControl>
-                <FormMessage
-                  className={`text-red-500 text-sm mb-2 ${
-                    errors.image ? "" : "hidden"
-                  }`}
-                >
+                <FormMessage className="text-red-500">
                   {errors.title && errors.title.message}
                 </FormMessage>
               </FormItem>
@@ -97,33 +79,31 @@ const CollectionForm = () => {
                     className="border border-gray-300 shadow-sm rounded-none focus:outline-none"
                   />
                 </FormControl>
-                <FormMessage
-                  className={`text-red-500 text-sm mb-2 ${
-                    errors.image ? "" : "hidden"
-                  }`}
-                >
+                <FormMessage className="text-red-500">
                   {errors.description && errors.description.message}
                 </FormMessage>
               </FormItem>
             )}
           />
           <FormField
-            name="image"
+            name="images"
             render={({ field }) => (
               <FormItem>
+                <FormLabel className="text-gray-500">Images</FormLabel>
                 <FormControl>
                   <ImageUpload
-                    value={field.value ? field.value : []}
-                    onChange={(url) => field.onChange(url)}
-                    onRemove={() => field.onChange("")}
+                    value={field.value}
+                    onChange={(urls) => field.onChange(urls)}
+                    onRemove={(url) =>
+                      field.onChange(
+                        field.value.filter((u: string) => u !== url)
+                      )
+                    }
+                    directory="borcelle/collection"
                   />
                 </FormControl>
-                <FormMessage
-                  className={`text-red-500 text-sm mb-2 ${
-                    errors.image ? "" : "hidden"
-                  }`}
-                >
-                  {errors.image && errors.image.message}
+                <FormMessage className="text-red-500">
+                  {errors.images && errors.images.message}
                 </FormMessage>
               </FormItem>
             )}
