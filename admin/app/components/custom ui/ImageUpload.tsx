@@ -1,83 +1,72 @@
-import { useState } from "react";
+import React from "react";
 import { CldUploadWidget } from "next-cloudinary";
-import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Trash } from "lucide-react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 interface ImageUploadProps {
   value: string[];
-  onChange: (value: string[]) => void;
+  onChange: (urls: string[]) => void;
+  onRemove: (url: string) => void;
+  directory: string;
 }
 
-const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange }) => {
-  const [cloudinarySignature, setCloudinarySignature] = useState<string>("");
-
-  const fetchCloudinarySignature = async () => {
-    try {
-      const response = await fetch("/api/sign-in/route");
-      if (!response.ok) {
-        throw new Error("Failed to fetch Cloudinary signature");
-      }
-      const data = await response.json();
-      setCloudinarySignature(data.signature);
-    } catch (error) {
-      console.error("Error fetching Cloudinary signature:", error);
-    }
+const ImageUpload: React.FC<ImageUploadProps> = ({
+  value,
+  onChange,
+  onRemove,
+  directory,
+}) => {
+  const onUpload = (result: any) => {
+    const uploadedUrl = result.info.secure_url;
+    onChange([...value, uploadedUrl]);
   };
-
-  const onUploadSuccess = (result: any) => {
-    onChange([...value, result.info.secure_url]);
-  };
-
-  const preset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
   return (
     <div>
-      <div className="mb-4 flex-wrap items-center gap-4">
-        {value.map((url, index) => (
-          <div key={index} className="relative h-24 w-24">
+      <div className="mb-4 flex flex-wrap items-center gap-4">
+        {value.map((url) => (
+          <div key={url} className="relative w-[200px] h-[200px]">
+            <div className="absolute top-0 right-0 z-10">
+              <Button
+                type="button"
+                onClick={() => onRemove(url)}
+                size="sm"
+                className="bg-red-500 text-white"
+              >
+                <Trash className="h-4 w-4" />
+              </Button>
+            </div>
             <Image
               src={url}
-              alt="uploaded image"
-              layout="fill"
-              objectFit="cover"
+              alt="collection"
+              className="object-cover rounded-lg"
+              fill
             />
-            <button
-              className="absolute top-2 right-2 bg-gray-800 rounded-full text-white p-1"
-              onClick={() => {
-                console.log("Remove image:", url);
-              }}
-            >
-              X
-            </button>
           </div>
         ))}
       </div>
-      <Button
-        onClick={fetchCloudinarySignature}
-        className="bg-gray-400 text-white rounded-none"
-      >
-        <Plus className="h-4 w-4 mr-2" />
-        Upload Images
-      </Button>
 
-      {cloudinarySignature && (
-        <CldUploadWidget
-          uploadPreset={preset}
-          onSuccess={onUploadSuccess}
-          {...({ signature: cloudinarySignature } as any)}
-        >
-          {({ open }) => (
+      <CldUploadWidget
+        uploadPreset={
+          process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
+        }
+        options={{ folder: directory }}
+        onSuccess={onUpload}
+      >
+        {({ open }) => {
+          return (
             <Button
+              type="button"
               onClick={() => open()}
-              className="bg-grey-1 text-white rounded-none"
+              className="bg-gray-500 text-white"
             >
               <Plus className="h-4 w-4 mr-2" />
-              Upload Images
+              Upload Image
             </Button>
-          )}
-        </CldUploadWidget>
-      )}
+          );
+        }}
+      </CldUploadWidget>
     </div>
   );
 };
