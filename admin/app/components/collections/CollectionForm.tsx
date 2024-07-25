@@ -17,8 +17,8 @@ import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
 
 const formSchema = z.object({
-  title: z.string().min(2).max(20).nonempty(),
-  description: z.string().min(2).max(200).nonempty(),
+  title: z.string().min(2).max(20),
+  description: z.string().min(2).max(200),
   images: z.array(z.string().url()).optional(),
 });
 
@@ -113,7 +113,7 @@ const CollectionForm = () => {
               type="submit"
               className="bg-[#045EBC] text-white py-2 px-5 focus:outline-none focus:bg-[#045EBC]"
             >
-              Create collection
+              Create Collection
             </Button>
           </div>
         </form>
