@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useState } from 'react';
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
@@ -23,6 +24,7 @@ const formSchema = z.object({
 });
 
 const CollectionForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
