@@ -42,7 +42,7 @@ const CollectionForm = () => {
   const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
-      await submitFormData(data);
+      submitFormData(data);
     } catch (error) {
       console.error(error);
     } finally {
