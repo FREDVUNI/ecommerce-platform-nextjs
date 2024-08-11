@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useState } from 'react';
+import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
@@ -40,7 +40,14 @@ const CollectionForm = () => {
   } = methods;
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    setIsLoading(true);
+    try {
+      await submitFormData(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -114,8 +121,9 @@ const CollectionForm = () => {
             <Button
               type="submit"
               className="bg-[#045EBC] text-white py-2 px-5 focus:outline-none focus:bg-[#045EBC]"
+              disabled={isLoading}
             >
-              Create Collection
+              {isLoading ? "Submitting..." : "Create Collection"}
             </Button>
           </div>
         </form>
@@ -125,3 +133,7 @@ const CollectionForm = () => {
 };
 
 export default CollectionForm;
+function submitFormData(data: any) {
+  throw new Error("Function not implemented.");
+}
+
