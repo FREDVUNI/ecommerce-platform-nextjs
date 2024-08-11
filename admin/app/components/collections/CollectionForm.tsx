@@ -39,7 +39,7 @@ const CollectionForm = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = (data: any) => {
+  const onSubmit = async (data: any) => {
     setIsLoading(true);
     try {
       await submitFormData(data);
@@ -136,4 +136,3 @@ export default CollectionForm;
 function submitFormData(data: any) {
   throw new Error("Function not implemented.");
 }
-
