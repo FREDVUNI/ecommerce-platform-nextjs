@@ -16,7 +16,9 @@ const LeftSideBar = () => {
     <div className="h-screen w-64 flex-col bg-white text-black shadow-lg fixed lg:relative hidden lg:block">
       {/* Logo Section */}
       <div className="flex items-center justify-center py-6 border-b border-gray-200">
-        <Image src="/logo.png" alt="logo" width={150} height={70} />
+        <Link href={"/"}>
+          <Image src="/logo.png" alt="logo" width={150} height={70} />
+        </Link>
       </div>
 
       {/* Navigation Links */}
