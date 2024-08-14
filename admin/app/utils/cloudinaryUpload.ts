@@ -15,7 +15,6 @@ export const uploadImage = async (directory: string, imagePath: string) => {
 
     return { success: true, result };
   } catch (error) {
-    console.error("Error uploading image to Cloudinary:", error);
     return { success: false, error };
   }
 };
