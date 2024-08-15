@@ -8,6 +8,7 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
 - **MongoDB**: A NoSQL database for all database management.
 - **Clerk**: A service for authentication and user management.
 - **React-Hook-Form**: A library for form validation.
+- **Zod:** A schema validation library used to define and validate the shape of data in TypeScript
 - **Tailwind CSS & Shadcn UI**: Utility-first CSS framework and UI components for responsive UI design.
 - **Next Cloudinary**: A service for image upload and storage.
 
