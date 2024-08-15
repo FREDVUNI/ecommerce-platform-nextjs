@@ -50,6 +50,7 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
    Create a `.env.local` file in the root of your project and add the following variables:
 
    ```env
+   MONGO_DB_NAME=your-mongo-db-name
    MONGODB_URI=your-mongodb-uri
    STRIPE_SECRET_KEY=your-stripe-secret-key
    CLERK_FRONTEND_API=your-clerk-frontend-api
