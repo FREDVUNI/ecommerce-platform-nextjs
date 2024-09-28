@@ -37,7 +37,7 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/FREDVUNI/fullstack-ecommerce-platform.git
+   git clone https://github.com/FREDVUNI/ecommerce-platform-nextjs
    cd fullstack-ecommerce-platform
    ```
 
