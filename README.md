@@ -62,6 +62,7 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
    CLOUDINARY_API_KEY=your-cloudinary-api-key
    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
    CLOUDINARY_API_SECRET=your-cloudinary-api-secret
+   MONGO_URI=your-mongo-db-uri
    ```
 
 ### Running the Application
