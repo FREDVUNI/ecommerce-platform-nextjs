@@ -116,10 +116,6 @@ To learn more about the technologies used in this project, check out the followi
 - [Shadcn UI Documentation](https://shadcn.dev/docs)
 - [Next Cloudinary Documentation](https://cloudinary.com/documentation/next_integration)
 
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
 ## Acknowledgements
 
 - Special thanks to [Code With Phuc](https://www.youtube.com/watch?v=SR4dFgdKUyI&t=661s) and contributors of the libraries and services used in this project.
