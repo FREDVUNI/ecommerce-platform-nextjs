@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "../globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import ToastProvider from "../lib/ToastProvider";
 import TopBar from "../components/layout/TopBar";
 import LeftSideBar from "../components/layout/LeftSideBar";
 
@@ -24,6 +25,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={poppins.className}>
+          <ToastProvider />
           <div className="flex h-screen">
             <LeftSideBar />
             <div className="flex flex-col flex-1">
