@@ -6,6 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
 import {
+  Form,
   FormField,
   FormItem,
   FormLabel,
@@ -16,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
+import toast from "react-hot-toast";
+import router from "next/router";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -39,12 +42,21 @@ const CollectionForm = () => {
     formState: { errors },
   } = methods;
 
-  const onSubmit = async (data: any) => {
-    setIsLoading(true);
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      submitFormData(data);
+      setIsLoading(true);
+
+      const res = await fetch("/api/collection", {
+        method: "POST",
+        body: JSON.stringify(values),
+      });
+      if (res.ok) {
+        toast.success("Collection has been created.");
+        router.push("/collections");
+      }
     } catch (error) {
       console.error(error);
+      toast.error("Something went wrong.");
     } finally {
       setIsLoading(false);
     }
@@ -55,8 +67,8 @@ const CollectionForm = () => {
       <h2 className="text-2xl font-medium mb-4 text-gray-500">
         Create Collection
       </h2>
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <Form {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             name="title"
             render={({ field }) => (
@@ -127,12 +139,9 @@ const CollectionForm = () => {
             </Button>
           </div>
         </form>
-      </FormProvider>
+      </Form>
     </div>
   );
 };
 
 export default CollectionForm;
-function submitFormData(data: any) {
-  throw new Error("Function not implemented.");
-}
