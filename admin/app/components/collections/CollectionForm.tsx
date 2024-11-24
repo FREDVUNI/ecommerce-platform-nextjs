@@ -21,8 +21,8 @@ import toast from "react-hot-toast";
 import router from "next/router";
 
 const formSchema = z.object({
-  title: z.string().min(2).max(20),
-  description: z.string().min(2).max(200),
+  title: z.string().min(2).max(200),
+  description: z.string().min(2).max(500),
   images: z.array(z.string().url()).optional(),
 });
 
@@ -46,10 +46,11 @@ const CollectionForm = () => {
     try {
       setIsLoading(true);
 
-      const res = await fetch("/api/collection", {
+      const res = await fetch("/api/collections", {
         method: "POST",
         body: JSON.stringify(values),
       });
+      console.log(values);
       if (res.ok) {
         toast.success("Collection has been created.");
         router.push("/collections");
