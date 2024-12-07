@@ -13,8 +13,10 @@ const connectDB = async (): Promise<void> => {
       dbName: process.env.MONGO_DB_NAME,
     });
     isConnected = true;
+    console.log("connected to database")
   } catch (error) {
     isConnected = false;
+    console.log(error)
     return;
   }
 };
