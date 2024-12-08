@@ -50,7 +50,6 @@ const CollectionForm = () => {
         method: "POST",
         body: JSON.stringify(values),
       });
-      console.log(values);
       if (res.ok) {
         toast.success("Collection has been created.");
         router.push("/collections");
