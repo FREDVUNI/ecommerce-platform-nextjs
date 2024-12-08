@@ -51,6 +51,7 @@ const CollectionForm = () => {
         body: JSON.stringify(values),
       });
       if (res.ok) {
+        setIsLoading(false);
         toast.success("Collection has been created.");
         router.push("/collections");
       }
