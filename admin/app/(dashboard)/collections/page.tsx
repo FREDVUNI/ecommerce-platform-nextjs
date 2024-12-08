@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const Collection = (props: Props) => {
+const Collections = (props: Props) => {
   return (
     <div className="p-10 bg-white shadow-sm">
       <h2 className="text-2xl font-medium mb-4 text-gray-500">
@@ -12,4 +12,4 @@ const Collection = (props: Props) => {
   );
 };
 
-export default Collection;
+export default Collections;
