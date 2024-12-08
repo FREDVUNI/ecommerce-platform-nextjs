@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     if (existingCollection)
-      return new NextResponse(`collection ${title} already extsts`, {
+      return new NextResponse(`The collection "${title}" already extsts`, {
         status: 400,
       });
 
