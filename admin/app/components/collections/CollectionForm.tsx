@@ -56,7 +56,7 @@ const CollectionForm = () => {
         router.push("/collections");
       }
     } catch (error) {
-      toast.error("Something went wrong.");
+      toast.error(error.message || "Something went wrong.");
     } finally {
       setIsLoading(false);
     }

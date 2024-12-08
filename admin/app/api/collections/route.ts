@@ -48,7 +48,6 @@ export const POST = async (req: NextRequest) => {
       },
     });
   } catch (error) {
-    console.log(error);
     return new NextResponse("Internal server error " + error, { status: 500 });
   }
 };
