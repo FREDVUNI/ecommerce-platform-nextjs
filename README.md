@@ -56,8 +56,8 @@ This project demonstrates how to build and deploy a full-stack integrated e-comm
    STRIPE_SECRET_KEY=your-stripe-secret-key
    CLERK_FRONTEND_API=your-clerk-frontend-api
    CLERK_API_KEY=your-clerk-api-key
-   NEXT_PUBLIC_CLERK_SIGN_IN_URL
-   NEXT_PUBLIC_CLERK_SIGN_UP_URL
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
    CLOUDINARY_CLOUD_NAME=your-cloudinary-cloud-name
    CLOUDINARY_API_KEY=your-cloudinary-api-key
    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=your-cloudinary-upload-preset
