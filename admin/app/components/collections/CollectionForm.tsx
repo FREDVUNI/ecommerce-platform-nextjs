@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
 import toast from "react-hot-toast";
-import router from "next/router";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z.string().min(2).max(200),
@@ -28,6 +28,7 @@ const formSchema = z.object({
 
 const CollectionForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
