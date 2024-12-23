@@ -51,3 +51,20 @@ export const POST = async (req: NextRequest) => {
     return new NextResponse("Internal server error " + error, { status: 500 });
   }
 };
+
+export const GET = async (req: NextRequest) => {
+  try {
+    await connectDB();
+
+    const collections = await Collection.find().sort({ createdAt: "desc" });
+
+    return new NextResponse(JSON.stringify(collections), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    return new NextResponse("Internal server error " + error, { status: 500 });
+  }
+};
