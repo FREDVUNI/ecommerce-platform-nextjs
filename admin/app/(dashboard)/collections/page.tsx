@@ -30,11 +30,11 @@ const columns: ColumnDef<any, any>[] = [
     ),
   },
   {
-    header: "Description",
-    accessorKey: "description",
+    header: "Products",
+    accessorKey: "product",
     cell: ({ row }) => (
-      <div className="truncate max-w-xs" title={row.original.description}>
-        {row.original.description}
+      <div className="max-w-xs" title={row.original.products}>
+        {row.original.products.length}
       </div>
     ),
   },
