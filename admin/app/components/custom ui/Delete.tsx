@@ -23,7 +23,7 @@ interface DeleteProps {
 export const Delete: React.FC<DeleteProps> = ({ id }) => {
   const [loading, setLoading] = useState(false);
 
-  const onDelete = async () => {
+  const handleDelete = async () => {
     try {
       setLoading(true);
       const res = await fetch(`/api/collections/${id}`, {
@@ -56,8 +56,11 @@ export const Delete: React.FC<DeleteProps> = ({ id }) => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction className="bg-red-700 text-white" onClick={onDelete}>
-            Continue
+          <AlertDialogAction
+            className="bg-red-700 text-white"
+            onClick={handleDelete}
+          >
+            Delete
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
