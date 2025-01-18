@@ -3,7 +3,7 @@ import { auth } from "@clerk/nextjs/server";
 import Collection from "@/app/lib/models/Collection";
 import { NextRequest, NextResponse } from "next/server";
 
-export const Delete = async (
+export const DELETE = async (
   req: NextRequest,
   { params }: { params: { collectionId: string } }
 ) => {
@@ -18,7 +18,7 @@ export const Delete = async (
 
     await Collection.findByIdAndDelete(params.collectionId);
 
-    return new NextResponse("collection has been deleted.", { status: 204 });
+    return new NextResponse("collection has been deleted.", { status: 200 });
   } catch (err) {
     console.log("[collectionId_DELETE]", err);
   }
