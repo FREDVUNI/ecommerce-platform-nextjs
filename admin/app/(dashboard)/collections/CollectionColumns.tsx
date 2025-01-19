@@ -19,7 +19,7 @@ export const columns: ColumnDef<any, any>[] = [
     header: "Title",
     accessorKey: "title",
     cell: ({ row }) => (
-      <div title={row.original.title} className="truncate max-w-xs">
+      <div title={row.original.title} className="truncate max-w-xs hover:text-red-600">
         <Link href={`/collections/${row.original._id}`}>
           {row.original.title}
         </Link>
