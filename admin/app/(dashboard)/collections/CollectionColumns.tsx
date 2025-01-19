@@ -1,6 +1,6 @@
 import { Delete } from "@/app/components/custom ui/Delete";
-import { Button } from "@/components/ui/button";
 import { ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 import React from "react";
 
 export const columns: ColumnDef<any, any>[] = [
@@ -19,8 +19,10 @@ export const columns: ColumnDef<any, any>[] = [
     header: "Title",
     accessorKey: "title",
     cell: ({ row }) => (
-      <div className="truncate max-w-xs" title={row.original.title}>
-        {row.original.title}
+      <div title={row.original.title} className="truncate max-w-xs">
+        <Link href={`/collections/${row.original._id}`}>
+          {row.original.title}
+        </Link>
       </div>
     ),
   },
@@ -37,9 +39,6 @@ export const columns: ColumnDef<any, any>[] = [
     header: "Actions",
     cell: ({ row }) => (
       <div className="flex space-x-2">
-        {/* <Button variant="outline" size="sm">
-          <Edit className="w-4 h-4" />
-        </Button> */}
         <Delete id={row.original._id} />
       </div>
     ),
