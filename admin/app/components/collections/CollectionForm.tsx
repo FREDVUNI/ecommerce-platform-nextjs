@@ -26,12 +26,18 @@ const formSchema = z.object({
   images: z.array(z.string().url()).optional(),
 });
 
-const CollectionForm = () => {
+interface CollectionFormProps {
+  initialData?: CollectionType | null;
+}
+
+const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
+  
   const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
+    defaultValues: initialData ? initialData : {
       title: "",
       description: "",
       images: [],
