@@ -4,17 +4,17 @@ import Link from "next/link";
 import React from "react";
 
 export const columns: ColumnDef<any, any>[] = [
-  {
-    header: "Image",
-    accessorKey: "image",
-    cell: ({ row }) => (
-      <img
-        src={row.original.image}
-        alt={row.original.title}
-        className="w-16 h-16 object-cover rounded-md"
-      />
-    ),
-  },
+  // {
+  //   header: "Image",
+  //   accessorKey: "image",
+  //   cell: ({ row }) => (
+  //     <img
+  //       src={row.original.image}
+  //       alt={row.original.title}
+  //       className="w-16 h-16 object-cover rounded-md"
+  //     />
+  //   ),
+  // },
   {
     header: "Title",
     accessorKey: "title",
