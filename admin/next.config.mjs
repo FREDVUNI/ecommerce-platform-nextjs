@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  runtime: "nodejs",
+  swcMinify: false,
   images: {
     remotePatterns: [
       {
