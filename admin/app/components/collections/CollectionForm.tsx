@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Delete } from "../custom ui/Delete";
 
 const formSchema = z.object({
   title: z.string().min(2).max(200),
@@ -27,21 +28,23 @@ const formSchema = z.object({
 });
 
 interface CollectionFormProps {
-  initialData?: CollectionType | null;
+  initialData?: CollectionTypes | null;
 }
 
 const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  
+
   const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialData ? initialData : {
-      title: "",
-      description: "",
-      images: [],
-    },
+    defaultValues: initialData
+      ? initialData
+      : {
+          title: "",
+          description: "",
+          images: [],
+        },
   });
 
   const {
@@ -72,7 +75,18 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   return (
     <div className="p-10 bg-white shadow-sm">
       <h2 className="text-2xl font-medium mb-4 text-gray-500">
-        Create Collection
+        {initialData ? (
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-medium mb-4 text-gray-500">
+              Edit Collection
+            </h2>
+            <Delete id={initialData._id} />
+          </div>
+        ) : (
+          <h2 className="text-2xl font-medium mb-4 text-gray-500">
+            create Collection
+          </h2>
+        )}
       </h2>
       <Form {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-8">
