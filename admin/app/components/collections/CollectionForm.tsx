@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, FormProvider } from "react-hook-form";
@@ -28,7 +27,7 @@ const formSchema = z.object({
 });
 
 interface CollectionFormProps {
-  initialData?: CollectionTypes | null;
+  initialData?: CollectionType | null;
 }
 
 const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
@@ -39,7 +38,15 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
   const methods = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData
-      ? initialData
+      ? {
+          title: initialData.title,
+          description: initialData.description,
+          images: Array.isArray(initialData.images)
+            ? initialData.images
+            : initialData.images
+            ? [initialData.images]
+            : [],
+        }
       : {
           title: "",
           description: "",
@@ -150,6 +157,7 @@ const CollectionForm: React.FC<CollectionFormProps> = ({ initialData }) => {
               </FormItem>
             )}
           />
+
           <div className="flex gap-8">
             <Button
               type="submit"
