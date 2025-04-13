@@ -11,7 +11,7 @@ const CollectionDetails = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [CollectionDetails, setCollectionDetails] =
-    useState<CollectionTypes | null>(null);
+    useState<CollectionType | null>(null);
   const getCollection = async () => {
     try {
       const res = await fetch(`/api/collections/${params.collectionId}`, {
@@ -20,7 +20,7 @@ const CollectionDetails = ({
       const data = await res.json();
       setCollectionDetails(data);
       setLoading(false);
-      //   console.log(data);
+      console.log("initial data ", data);
     } catch (err) {
       console.log("[getCollection]", err);
     }
