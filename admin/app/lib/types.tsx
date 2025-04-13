@@ -1,4 +1,4 @@
-interface CollectionTypes {
+interface CollectionType {
   _id: string;
   title: string;
   description: string;
@@ -6,11 +6,18 @@ interface CollectionTypes {
   products: ProductType;
 }
 
-interface ProductType {
+type ProductType = {
   _id: string;
   title: string;
   description: string;
-  images: string;
+  media: [string];
+  category: string;
+  collections: [CollectionType];
+  tags: [string];
+  sizes: [string];
+  colors: [string];
   price: number;
-  quantity: number;
-}
+  expense: number;
+  createdAt: Date;
+  updatedAt: Date;
+};
